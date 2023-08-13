@@ -8,9 +8,11 @@ packages = [{include = "project_template_generator"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-fastapi = "^0.101.0"
+fastapi = "0.99.1"
 uvicorn = "^0.23.2"
 langchain = "^0.0.262"
+python-dotenv = "^1.0.0"
+black = "^23.7.0"
 
 
 [build-system]
