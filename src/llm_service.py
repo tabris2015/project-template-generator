@@ -1,4 +1,4 @@
-from langchain.llms import OpenAI
+from langchain.chat_models import ChatOpenAI
 from langchain.prompts import PromptTemplate
 from src.config import get_settings
 from src.prompts import PROJECT_TEMPLATE, ProjectParams
@@ -9,7 +9,7 @@ _SETTINGS = get_settings()
 
 class TemplateLLM:
     def __init__(self):
-        self.llm = OpenAI(
+        self.llm = ChatOpenAI(
             model_name=_SETTINGS.model, openai_api_key=_SETTINGS.openai_key
         )
         self.parser = get_project_parser()
