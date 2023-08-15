@@ -1,6 +1,8 @@
 from langchain.llms import OpenAI
+from langchain.prompts import PromptTemplate
 from src.config import get_settings
 from src.prompts import PROJECT_TEMPLATE, ProjectParams
+from src.parsers import get_project_parser, ProjectIdeas
 
 _SETTINGS = get_settings()
 
@@ -10,13 +12,19 @@ class TemplateLLM:
         self.llm = OpenAI(
             model_name=_SETTINGS.model, openai_api_key=_SETTINGS.openai_key
         )
-        self.prompt_template = PROJECT_TEMPLATE
+        self.parser = get_project_parser()
+        self.prompt_template = PromptTemplate(
+            template=PROJECT_TEMPLATE,
+            input_variables=["major", "n_examples", "language"],
+            partial_variables={"format_instructions": self.parser.get_format_instructions()}
+        )
 
-    def generate(self, params: ProjectParams):
-        prompt = self.prompt_template.format(**params.dict())
-        return self.llm.predict(prompt)
+    def generate(self, params: ProjectParams) -> ProjectIdeas:
+        _input = self.prompt_template.format(**params.dict())
+        output = self.llm.predict(_input)
+        return self.parser.parse(output)
 
     def generate_and_save(self, params: ProjectParams, out_file: str):
-        output = self.generate(params)
+        output_obj = self.generate(params)
         with open(out_file, "w") as f:
-            f.write(output)
+            f.write(output_obj.json(ensure_ascii=False))
