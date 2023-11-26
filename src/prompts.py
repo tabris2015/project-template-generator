@@ -1,6 +1,5 @@
 from enum import Enum
 from pydantic import BaseModel
-from langchain import PromptTemplate
 
 PROJECT_TEMPLATE = """You are an {major} senior student looking for a final project.
     In order to classify for your dissertation you need to present a project proposal with the following

@@ -1,6 +1,6 @@
 from enum import Enum
 from functools import lru_cache
-from pydantic import BaseSettings, BaseModel
+from pydantic_settings import BaseSettings
 
 
 class GPTModel(str, Enum):
