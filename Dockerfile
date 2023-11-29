@@ -1,5 +1,6 @@
 FROM python:3.11-slim
-
+ARG OPENAI_KEY
+ENV OPENAI_KEY=$OPENAI_KEY
 ENV PORT 8000
 
 COPY requirements.txt /
