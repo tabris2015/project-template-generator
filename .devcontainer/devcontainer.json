@@ -12,7 +12,10 @@
 		"--env-file", ".env"
 	],
 	"workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
-	"workspaceFolder": "/workspace"
+	"workspaceFolder": "/workspace",
+	"mounts": [
+		"type=bind,source=/home/${localEnv:USER}/.ssh,target=/root/.ssh,readonly"
+	]
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
 
