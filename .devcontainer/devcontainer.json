@@ -8,6 +8,7 @@
 		// Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
 		"dockerfile": "Dockerfile"
 	},
+	// "remoteUser": "root",
 	"runArgs": [
 		"--env-file", ".env"
 	],
