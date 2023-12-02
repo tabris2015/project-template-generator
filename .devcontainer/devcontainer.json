@@ -15,7 +15,7 @@
 	"workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
 	"workspaceFolder": "/workspace",
 	"mounts": [
-		"type=bind,source=/home/${localEnv:USER}/.ssh,target=/root/.ssh,readonly"
+		"type=bind,source=${localEnv:HOME}/.ssh,target=/root/.ssh,readonly"
 	]
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
